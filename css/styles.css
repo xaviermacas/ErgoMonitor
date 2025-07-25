@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e6eaf2 100%);
+    color: #2c3e50;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    grid-template-rows: 1fr 240px;
+    height: 100vh;
+    gap: 15px;
+    padding: 15px;
+}
+
+/* EMG Chart Styles */
+.chart-container {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8eef5;
+    position: relative;
+}
+
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
+    border-radius: 12px 12px 0 0;
+}
+
+#emgChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Pitch Animation Styles */
+.pitch-container {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8eef5;
+    position: relative;
+}
+
+.pitch-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+    border-radius: 12px 12px 0 0;
+}
+
+.pitch-animation {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#pitchImage {
+    max-width: 100%;
+    max-height: 100%;
+    transition: all 0.1s ease-in-out;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+.angle-display {
+    text-align: center;
+}
+
+#angleValue {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #d1d5db;
+    margin-bottom: 5px;
+}
+
+/* Fatigue Bar Styles */
+.fatigue-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8eef5;
+    position: relative;
+}
+
+.fatigue-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+    border-radius: 12px 12px 0 0;
+}
+
+.fatigue-bar {
+    width: 100%;
+    height: 50px;
+    background: #f1f5f9;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 2px solid #e2e8f0;
+    position: relative;
+}
+
+.fatigue-level {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #10b981 0%, #f59e0b 50%, #ef4444 100%);
+    border-radius: 23px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.fatigue-value {
+    text-align: center;
+}
+
+#fatiguePercentage {
+    font-size: 2em;
+    font-weight: 600;
+    color: #d1d5db;
+    margin-bottom: 8px;
+}
+
+.fatigue-label {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr 240px;
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .chart-container {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 15px;
+    }
+    
+    .pitch-container {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 20px;
+    }
+    
+    .fatigue-container {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 20px;
+    }
+    
+    .pitch-animation {
+        width: 120px;
+        height: 120px;
+    }
+    
+    #angleValue {
+        font-size: 1.8em;
+    }
+    
+    #fatiguePercentage {
+        font-size: 1.6em;
+    }
+}
+
+/* Enhanced fatigue level styles */
+.fatigue-level.low {
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.fatigue-level.medium {
+    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.fatigue-level.high {
+    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Professional loading animation */
+.loading {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}

@@ -1,0 +1,74 @@
+/*
+MODIFICACIONES NECESARIAS PARA TU CÓDIGO ESP32
+==============================================
+
+En tu código ESP32, cambia estas líneas:
+
+1. Cambia la configuración del servidor:
+*/
+
+// ANTES:
+// const char* websocket_host = "192.168.68.128";  // IP de tu PC actualizada
+
+// DESPUÉS (usa la IP de tu PC donde está corriendo el servidor WebSocket):
+const char* websocket_host = "192.168.68.100";  // IP de tu PC donde corre el servidor
+
+// ANTES:
+// const int websocket_port = 8000;
+
+// DESPUÉS:
+const int websocket_port = 8000;  // Puerto del WebSocket server (mantener 8000)
+
+// ANTES:
+// const char* websocket_path = "/ws/esp32";
+
+// DESPUÉS:
+const char* websocket_path = "/ws/esp32";  // Mantener el mismo path
+
+/*
+2. El ESP32 debe conectarse a la IP de tu PC (donde corre el servidor), no a su propia IP.
+
+3. Tu PC debe tener la IP donde está el servidor WebSocket.
+
+CONFIGURACIÓN COMPLETA:
+======================
+
+ESP32 (tu código actual) -> Conecta a: ws://IP_DE_TU_PC:8000/ws/esp32
+Servidor WebSocket (PC)  -> Escucha en: 0.0.0.0:8000 (todas las interfaces)
+Web Client (navegador)   -> Conecta a: ws://localhost:8080/ws/client
+
+PASOS PARA EJECUTAR:
+===================
+
+1. En tu ESP32, asegúrate de que websocket_host sea la IP de tu PC
+2. Sube el código al ESP32
+3. En tu PC, ejecuta: python websocket_server.py
+4. Abre el navegador en: http://localhost:8080
+5. El ESP32 se conectará automáticamente al servidor
+6. El navegador recibirá los datos del ESP32 a través del servidor
+
+EJEMPLO de configuración en ESP32:
+=================================
+*/
+
+// WiFi Configuration (en tu ESP32)
+const char* ssid = "ErgoMonitor";        
+const char* password = "12345678";    
+
+// Server Configuration (en tu ESP32) - CAMBIAR ESTA IP
+const char* websocket_host = "192.168.68.XXX";  // <- IP de tu PC (donde corre el servidor)
+const int websocket_port = 8000;
+const char* websocket_path = "/ws/esp32";
+
+/*
+¿Cómo encontrar la IP de tu PC?
+==============================
+
+En Windows, abre CMD y ejecuta:
+ipconfig
+
+Busca la sección "Adaptador de LAN inalámbrica Wi-Fi" o similar:
+IPv4 Address. . . . . . . . . . . : 192.168.X.X
+
+Esa es la IP que debes usar en websocket_host del ESP32.
+*/
