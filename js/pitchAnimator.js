@@ -21,7 +21,7 @@ class PitchAnimator {
         this.imageCache = {};
         this.availableAngles.forEach(angle => {
             const img = new Image();
-            img.src = `images/Angulo${angle}.png`;
+            img.src = `./images/Angulo${angle}.png`;
             this.imageCache[angle] = img;
         });
     }
